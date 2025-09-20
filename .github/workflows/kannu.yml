@@ -19,4 +19,28 @@ jobs:
 
       - name: Build the source codes
         run: mvn package
-        run: mvn pmd:pmd 
+
+      - name: Connect to my system and deploy to tomcat
+        uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.4
+          with:
+    # ssh remote host
+           host: '157.48.26.146'
+    # ssh remote port
+           port: '9090' # optional, default is 22
+    # ssh remote user
+           user: 'Aman'
+           pass: '1374' # optional
+    # connection timeout to remote host
+           connect_timeout: 10s # optional, default is 30s
+    # execute pre-commands before scp
+           first_ssh:
+              sudo chmod 777 /var/lib/tomcat10/webapps # optional
+    # scp from local to remote
+           scp: 
+              './target/*war' => /var/lib/tomcat10/webapps # optional
+    # execute post-commands after scp
+           last_ssh: 
+              sudo systemctl restart tomcat10 # optional
+          
+
+
