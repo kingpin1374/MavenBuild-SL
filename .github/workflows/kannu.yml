@@ -19,3 +19,4 @@ jobs:
 
       - name: Build the source code
         run: mvn package
+        run: mvn pmd:pmd 
