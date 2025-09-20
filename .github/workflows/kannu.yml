@@ -17,6 +17,6 @@ jobs:
           java-version: '11'
           cache: 'maven'
 
-      - name: Build the source code
+      - name: Build the source codes
         run: mvn package
         run: mvn pmd:pmd 
