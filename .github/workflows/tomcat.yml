@@ -1,6 +1,6 @@
 name: CICD using Maven and Jenkins
 on:
-  push:
+  push:    # fixed indentation, no value needed here
   workflow_dispatch:
 
 jobs:
@@ -37,7 +37,7 @@ jobs:
             sudo chmod 777 /var/lib/tomcat10/webapps
           # scp from local to remote
           scp: |
-            ./target/*war:/var/lib/tomcat10/webapps
+            ./target/*.war:/var/lib/tomcat10/webapps
           # execute post-commands after scp
           last_ssh: |
             sudo systemctl restart tomcat10
